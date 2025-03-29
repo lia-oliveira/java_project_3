@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.oliveiralia.api_blog.domain.User;
 import com.oliveiralia.api_blog.services.UserService;
 
-
-
 @RestController
 @RequestMapping(value="/users")
 public class UserResources {
@@ -25,5 +23,4 @@ public class UserResources {
 		List<User> list = service.findAll();
 		return ResponseEntity.ok().body(list);		
 	}
-
 }
