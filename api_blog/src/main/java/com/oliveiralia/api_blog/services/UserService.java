@@ -1,7 +1,6 @@
 package com.oliveiralia.api_blog.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,7 +38,7 @@ public class UserService {
 	}
 	
 	public User update(User obj) {
-		User newObj = repo.findById(obj.getId()).orElseThrow(() -> new RuntimeException("User not found"));;
+		User newObj = repo.findById(obj.getId()).orElseThrow(() -> new RuntimeException("User not found"));
 		updateData(newObj, obj);
 		return repo.save(newObj);		
 	}
