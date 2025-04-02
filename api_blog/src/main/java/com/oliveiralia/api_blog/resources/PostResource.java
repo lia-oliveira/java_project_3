@@ -1,13 +1,17 @@
 package com.oliveiralia.api_blog.resources;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.oliveiralia.api_blog.domain.Post;
+import com.oliveiralia.api_blog.resources.util.URL;
 import com.oliveiralia.api_blog.services.PostService;
 
 @RestController
@@ -22,8 +26,15 @@ public class PostResource {
 		Post obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
-	
-	
-	
+	/* No Java Moderno quando o @RequestParam receber um prâmetro já informado no método, não é necessário colocá-lo explicitamente.
+	  Basta colocar o valor default caso haja. Caso o parâmetro não tivesse sido passado como argumento do método
+	  seria necessário inserí-lo na anotação. findByTitle(@RequestParam(value="blblabla", defaultValue="") String text)
+	 */
+	@GetMapping(value="/titlesearch")
+	public ResponseEntity<List<Post>> findByTitle(@RequestParam(defaultValue="") String text){
+		text = URL.decodeParam(text);
+		List<Post> list = service.findByTitle(text);
+		return ResponseEntity.ok().body(list);
+	}	
 
 }

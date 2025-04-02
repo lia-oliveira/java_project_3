@@ -1,5 +1,7 @@
 package com.oliveiralia.api_blog.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,11 @@ public class PostService {
 	public Post findById(String id) {
 		Post user = repo.findById(id).orElseThrow(() ->new ObjectNotFoundException("Objeto não encontrado"));
 		return user;
+	}
+	
+	//query methods
+	public List<Post> findByTitle(String text) {
+		return repo.findByTitleContainingIgnoreCase(text);
 	}
 
 }
