@@ -7,6 +7,8 @@ import java.util.Objects;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.oliveiralia.api_blog.dto.AuthorDTO;
+
 @Document
 public class Post implements Serializable{
 
@@ -17,12 +19,12 @@ public class Post implements Serializable{
 	private Date date;
 	private String title;
 	private String body;
-	private User author;
+	private AuthorDTO author;
 	
 	public Post() {}
 	
 
-	public Post(String id, Date date, String title, String body, User author) {
+	public Post(String id, Date date, String title, String body, AuthorDTO author) {
 		this.id = id;
 		this.date = date;
 		this.title = title;
@@ -61,19 +63,20 @@ public class Post implements Serializable{
 	public void setBody(String body) {
 		this.body = body;
 	}
+	
+	public AuthorDTO getAuthor() {
+		return author;
+	}
+
+
+	public void setAuthor(AuthorDTO author) {
+		this.author = author;
+	}
 
 	@Override
 	public int hashCode() {
 		return Objects.hash(body, date, id, title);
 	}
-	
-	public User getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(User author) {
-		this.author = author;
-	}	
 
 	@Override
 	public boolean equals(Object obj) {

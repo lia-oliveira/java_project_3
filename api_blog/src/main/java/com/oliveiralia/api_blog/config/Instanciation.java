@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.oliveiralia.api_blog.domain.Post;
 import com.oliveiralia.api_blog.domain.User;
+import com.oliveiralia.api_blog.dto.AuthorDTO;
 import com.oliveiralia.api_blog.repositories.PostRepository;
 import com.oliveiralia.api_blog.repositories.UserRepository;
 
@@ -37,8 +38,8 @@ public class Instanciation implements CommandLineRunner{
 		
 		userRepository.saveAll(Arrays.asList(maria, alex, bob));
 		
-		Post post1 = new Post(null, sdf.parse("21/03/2018"), "Título do Post 1", "Conteúdo do post 1", maria);
-		Post post2 = new Post(null, sdf.parse("23/03/2018"), "Título do Post 2", "Conteúdo do post 2", maria);
+		Post post1 = new Post(null, sdf.parse("21/03/2018"), "Título do Post 1", "Conteúdo do post 1", new AuthorDTO(maria));
+		Post post2 = new Post(null, sdf.parse("23/03/2018"), "Título do Post 2", "Conteúdo do post 2", new AuthorDTO(maria));
 		postRepository.saveAll(Arrays.asList(post1, post2));
 	}
 
