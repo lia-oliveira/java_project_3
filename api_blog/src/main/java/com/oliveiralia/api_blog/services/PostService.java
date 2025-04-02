@@ -18,10 +18,14 @@ public class PostService {
 		Post user = repo.findById(id).orElseThrow(() ->new ObjectNotFoundException("Objeto não encontrado"));
 		return user;
 	}
+	//query 
+	public List<Post> findByTitle(String text) {
+		return repo.searchTitle(text);
+	}
 	
 	//query methods
-	public List<Post> findByTitle(String text) {
-		return repo.findByTitleContainingIgnoreCase(text);
-	}
+	//public List<Post> findByTitle(String text) {
+		//return repo.findByTitleContainingIgnoreCase(text);
+	//}
 
 }
